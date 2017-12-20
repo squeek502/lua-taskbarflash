@@ -1,9 +1,13 @@
 local taskbarflash = require('taskbarflash')
 
-local function sleep(n)
-  os.execute("sleep " .. tonumber(n))
+io.write("flashing in 3 seconds, unfocus this window"); io.flush()
+local start, passed = os.time(), 0
+while passed < 3 do
+  if (os.time() - start) ~= passed then
+  	io.write('.'); io.flush()
+  	passed = os.time() - start
+  end
 end
+print(" flashing")
 
-sleep(2)
-taskbarflash(3)
-sleep(2)
+taskbarflash()
