@@ -5,7 +5,7 @@
 
 #define INFINITE_FLASHES 0
 #define DEFAULT_BLINK_RATE 0
-#define __CALL_FUNC lua_flash_tray
+#define __CALL_FUNC taskbarflash_tray
 
 #if LUA_VERSION_NUM < 502
 #ifndef luaL_newlib
@@ -14,7 +14,7 @@
 #	define luaL_setfuncs(L,l,n) (luaL_register(L,NULL,l))
 #endif
 
-static int lua_flash_common(lua_State *L, DWORD flags)
+static int taskbarflash_common(lua_State *L, DWORD flags)
 {
 	UINT numFlashes = (UINT)luaL_optnumber(L, 1, INFINITE_FLASHES);
 	DWORD flashRate = (DWORD)luaL_optnumber(L, 2, DEFAULT_BLINK_RATE);
@@ -25,45 +25,49 @@ static int lua_flash_common(lua_State *L, DWORD flags)
 	return 0;
 }
 
-static int lua_flash_all(lua_State *L)
+static int taskbarflash_all(lua_State *L)
 {
-	return lua_flash_common(L, FLASHW_ALL);
+	return taskbarflash_common(L, FLASHW_ALL);
 }
 
-static int lua_flash_window(lua_State *L)
+static int taskbarflash_window(lua_State *L)
 {
-	return lua_flash_common(L, FLASHW_CAPTION);
+	return taskbarflash_common(L, FLASHW_CAPTION);
 }
 
-static int lua_flash_tray(lua_State *L)
+static int taskbarflash_tray(lua_State *L)
 {
-	return lua_flash_common(L, FLASHW_TRAY);
+	return taskbarflash_common(L, FLASHW_TRAY);
 }
 
-static int lua_flash_call(lua_State *L)
+static int taskbarflash_call(lua_State *L)
 {
 	lua_remove(L, 1); // remove the table from the stack
 	return __CALL_FUNC(L);
 }
 
-static const luaL_Reg flashwindow_funcs[] = {
-	{ "all", lua_flash_all },
-	{ "window", lua_flash_window },
-	{ "tray", lua_flash_tray },
+static const luaL_Reg taskbarflash_lib[] = {
+	{ "all", taskbarflash_all },
+	{ "window", taskbarflash_window },
+	{ "tray", taskbarflash_tray },
 	{ NULL, NULL }
 };
 
 __declspec(dllexport) int luaopen_taskbarflash(lua_State *L)
 {
-	luaL_newlib(L, flashwindow_funcs);
+	luaL_newlib(L, taskbarflash_lib);
 
 	// alias window <=> caption
 	lua_getfield(L, -1, "window");
 	lua_setfield(L, -2, "caption");
 
+	// alias tray <=> taskbar
+	lua_getfield(L, -1, "tray");
+	lua_setfield(L, -2, "taskbar");
+
 	// metatable for __call
 	lua_newtable(L);
-	lua_pushcfunction(L, lua_flash_call);
+	lua_pushcfunction(L, taskbarflash_call);
 	lua_setfield(L, -2, "__call");
 	lua_setmetatable(L, -2);
 
