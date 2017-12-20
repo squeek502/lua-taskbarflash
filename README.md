@@ -35,17 +35,26 @@ If needed, you can specify a [generator](https://cmake.org/cmake/help/latest/man
 `require('taskbarflash')` returns a callable table containing functions that allow for more precise control.
 
 ### `taskbarflash([nflashes = 0, flashrate = 0])`
-Flashes the Lua process' taskbar icon (but not window) `nflashes` times every `flashrate` milliseconds, or until the window is focused. When `nflashes` is `0`, it will flash indefinitely until the window is focused. When `flashrate` is `0`, it will use the default cursor blink rate of the system.
+Flashes the Lua process' taskbar icon (but not window) `nflashes` times every `flashrate` milliseconds, or until the window is focused. 
+
+-When `nflashes` is `0`, it will flash indefinitely until the window is focused.
+- When `flashrate` is `0`, it will use the default cursor blink rate of the system.
 
 **Aliases:** `taskbarflash.tray`, `taskbarflash.taskbar`
 
 ### `taskbarflash.window([nflashes = 0, flashrate = 0])`
-Flashes the Lua process' window (but not taskbar icon) `nflashes` times every `flashrate` milliseconds, or until the window is focused. When `nflashes` is `0`, it will flash indefinitely until the window is focused. When `flashrate` is `0`, it will use the default cursor blink rate of the system.
+Flashes the Lua process' window (but not taskbar icon) `nflashes` times every `flashrate` milliseconds, or until the window is focused.
+
+- When `nflashes` is `0`, it will flash indefinitely until the window is focused.
+- When `flashrate` is `0`, it will use the default cursor blink rate of the system.
 
 **Aliases:** `taskbarflash.caption`
 
 ### `taskbarflash.all([nflashes = 0, flashrate = 0])`
-Flashes the Lua process' window **and** taskbar icon `nflashes` times every `flashrate` milliseconds, or until the window is focused. When `nflashes` is `0`, it will flash indefinitely until the window is focused. When `flashrate` is `0`, it will use the default cursor blink rate of the system.
+Flashes the Lua process' window **and** taskbar icon `nflashes` times every `flashrate` milliseconds, or until the window is focused.
+
+- When `nflashes` is `0`, it will flash indefinitely until the window is focused.
+- When `flashrate` is `0`, it will use the default cursor blink rate of the system.
 
 ### Example usage
 
