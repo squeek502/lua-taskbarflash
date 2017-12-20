@@ -1,6 +1,6 @@
 # taskbarflash
 
-Lua module for Windows that can flash the taskbar icon and/or window of the current Lua console.
+Lua module for Windows that can flash the taskbar icon and/or window of the current console.
 
 ```lua
 local taskbarflash = require('taskbarflash')
@@ -54,14 +54,14 @@ local taskbarflash = require('taskbarflash')
 
 taskbarflash() -- flash the taskbar icon indefinitely until the window is focused
 taskbarflash(1) -- flash the taskbar icon once and then stop
-taskbarflash(5, 100) -- flash the taskbar icon 5 times--once every 100 milliseconds--and then stop
+taskbarflash(5, 100) -- flash the taskbar icon 5 times, once every 100 milliseconds
 taskbarflash.tray() -- same as taskbarflash()
 taskbarflash.taskbar() -- same as taskbarflash()
 
 taskbarflash.window() -- flash the window indefinitely until it is focused
-taskbarflash.window(5, 100) -- flash the window 5 times--once every 100 milliseconds--and then stop
+taskbarflash.window(5, 100) -- flash the window 5 times, once every 100 milliseconds
 taskbarflash.caption() -- same as taskbarflash.window()
 
 taskbarflash.all() -- flash both the window and the taskbar icon indefinitely until the window is focused
-taskbarflash.all(5, 100) -- flash both the window and the taskbar icon 5 times--once every 100 milliseconds--and then stop
+taskbarflash.all(5, 100) -- flash both the window and the taskbar icon 5 times, once every 100 milliseconds
 ```
