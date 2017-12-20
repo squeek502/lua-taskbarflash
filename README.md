@@ -1,5 +1,7 @@
 # taskbarflash
 
+[![Build status](https://ci.appveyor.com/api/projects/status/yr6w1wvj16iehd9m?svg=true)](https://ci.appveyor.com/project/squeek502/taskbarflash)
+
 Lua module for Windows that can flash the taskbar icon and/or window of the current console.
 
 ```lua
@@ -37,7 +39,7 @@ If needed, you can specify a [generator](https://cmake.org/cmake/help/latest/man
 ### `taskbarflash([nflashes = 0, flashrate = 0])`
 Flashes the Lua process' taskbar icon (but not window) `nflashes` times every `flashrate` milliseconds, or until the window is focused. 
 
--When `nflashes` is `0`, it will flash indefinitely until the window is focused.
+- When `nflashes` is `0`, it will flash indefinitely until the window is focused.
 - When `flashrate` is `0`, it will use the default cursor blink rate of the system.
 
 **Aliases:** `taskbarflash.tray`, `taskbarflash.taskbar`
