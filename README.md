@@ -1,4 +1,4 @@
-# taskbarflash
+# lua-taskbarflash
 
 [![Build status](https://ci.appveyor.com/api/projects/status/yr6w1wvj16iehd9m?svg=true)](https://ci.appveyor.com/project/squeek502/taskbarflash)
 
